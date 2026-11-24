@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.drive.opmode.autonomous;
+AutonomousCodeBiobuzzpackage org.firstinspires.ftc.teamcode.drive.opmode.autonomous;
 
 // Imported Libraries
 
@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.drive.SubSystem;
 
 
 @Autonomous(group = "drive")
-public class AutonomousCodeBiobuzz extends LinearOpMode {
+public class AutoShootSecond extends LinearOpMode {
 
 
 
@@ -47,7 +47,7 @@ public class AutonomousCodeBiobuzz extends LinearOpMode {
 
         waitForStart();
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
-                .turn(Math.toRadians(90))
+                .forward(5)
                 .build();
         drive.turn(Math.toRadians(90));
         drive.followTrajectory(trajectory2);
