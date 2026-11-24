@@ -33,17 +33,19 @@ public class SampleAuto extends LinearOpMode {
         subSystem.init(hardwareMap, drive);
 
 
-
         if (isStopRequested()) return;
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
                 .forward(20)
                 .turn(Math.toRadians(90))
+                .turn(Math.toRadians(90))
+                .back(20)
                 .back(20)
                 .build();
 
         drive.followTrajectory(trajectory);
 
 
+        waitForStart();
         subSystem.startLauncher();
 
 
