@@ -28,14 +28,20 @@ public class SubSystem {
 
     // Motors Setup
 
-    private DcMotorEx motor1, motor2, motor3, motor4;
-    private double motor1_RPM, motor2_RPM, motor3_RPM, motor4_RPM;
+    private DcMotorEx motor1, motor2;
 
     // Servos Setup
 
     private CRServo Pass;
     private CRServo funnelLeft;
     private CRServo funnelRight;
+    private Servo Flood;
+
+    // Variables
+    boolean intakeOn = false;
+    boolean intakeReverse = false;
+    boolean launcherOn = false;
+    boolean passOn = false;
 
     public void init(HardwareMap hardwareMap, Drive drive) {
         this.drive = drive;
@@ -45,9 +51,6 @@ public class SubSystem {
 
         Intake.setDirection(DcMotorEx.Direction.FORWARD);
         Launcher.setDirection(DcMotorEx.Direction.FORWARD);
-
-        Intake_RPM = 0;
-        Launcher_RPM = 0;
 
         Intake.setPower(0.01);
         Launcher.setPower(0.01);
@@ -59,8 +62,25 @@ public class SubSystem {
         funnelRight.setDirection(CRServo.Direction.REVERSE);
         Pass.setDirection(Servo.Direction.FORWARD);
 
+        Flood = hardwareMap.get(Servo.class, "Flood");
+        Flood.setPosition(0);
+
     }
 
+    // ---------------------------------------------------------------
+    // Floodlight
+
+    public void FloodLight(){
+        if(intakeReverse){
+            Flood.setPosition(0.28);
+        }
+        else if(intakeOn&&!launcherOn&&!passOn){
+            Flood.setPosition(0.72);
+        }
+        else(launcherOn&&!intakeOn&&!passOn){
+            Flood.setPosition(0.5);
+        }
+    }
 
 
     // ---------------------------------------------------------------
@@ -73,15 +93,18 @@ public class SubSystem {
         Intake.setPower(1.0);
         funnelLeft.setPower(1.0);
         funnelRight.setPower(1.0);
+        intakeOn = true;
     }
 
     public void stopIntake() {
         Intake.setPower(0.01);
         funnelLeft.setPower(0);
         funnelRight.setPower(0);
+        intakeOn = false;
     }
 
     public void reverseIntake() {
+        intakeReverse = true;   
         Intake.setPower(-1.0);
     }
 
@@ -89,21 +112,27 @@ public class SubSystem {
 
     public void startLauncher() {
         Launcher.setPower(1.0);
+        launcherOn = true;
     }
 
     public void stopLauncher() {
         Launcher.setPower(0.01);
+        launcherOn = false;
     }
 
     // Passthrough
 
     public void startPass() {
         Pass.setPower(1.0);
+        passOn = true;
     }
 
     public void stopPass() {
         Pass.setPower(0.01);
+        passOn = false;
     }
+
+
 
  
 
