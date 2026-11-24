@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.drive.opmode.teleop;
 
 // Imported Libraries
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
 import org.firstinspires.ftc.teamcode.drive.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.drive.SubSystem;
@@ -40,7 +40,7 @@ public class SampleTeleop extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
+        SampleTankDrive drive = new SampleTankDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         SubSystem subSystem = new SubSystem();

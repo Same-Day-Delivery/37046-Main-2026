@@ -27,23 +27,29 @@ public class SampleAuto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
-        drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        drive.setMode(DcMotor.RunMode.RUN_WITH_ENCODER);
 
         SubSystem subSystem = new SubSystem();
         subSystem.init(hardwareMap, drive);
 
 
-        waitForStart();
 
         if (isStopRequested()) return;
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
                 .forward(20)
+                .turn(Math.toRadians(90))
+                .back(20)
                 .build();
 
         drive.followTrajectory(trajectory);
 
 
+        subSystem.startLauncher();
 
+
+
+
+        waitForStart();
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
                 .turn(Math.toRadians(90))
                 .build();
