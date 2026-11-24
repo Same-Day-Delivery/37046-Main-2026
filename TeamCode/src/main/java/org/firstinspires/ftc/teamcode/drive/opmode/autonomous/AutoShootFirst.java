@@ -31,6 +31,7 @@ public class AutoShootFirst extends LinearOpMode {
 
 
         if (isStopRequested()) return;
+        waitForStart();
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
                 .forward(20)
                 .turn(Math.toRadians(90))
@@ -45,7 +46,7 @@ public class AutoShootFirst extends LinearOpMode {
 
 
 
-        waitForStart();
+
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
                 .forward(5)
                 .build();
