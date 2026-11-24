@@ -81,6 +81,10 @@ public class SubSystem {
         funnelRight.setPower(0);
     }
 
+    public void reverseIntake() {
+        Intake.setPower(-1.0);
+    }
+
     // Launcher
 
     public void startLauncher() {
