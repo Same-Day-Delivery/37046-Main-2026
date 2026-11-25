@@ -61,12 +61,51 @@ public class SampleTeleop extends LinearOpMode {
 
         }
 
-        if(gamepad2.x){
-            startLauncher();
+        if(gamepad2.xWasPressed() ){
+            launch = !launch;
+        }
+
+        if (launch) {
+            subSystem.startLauncher();
+        } else {
+            subSystem.stopLauncher();
+        }
+
+        if(gamepad2.yWasPressed() ){
+            intake = !intake;
+        }
+
+        if(gamepad2.aWasPressed() ){
+            intakeReverse = !intakeReverse;
+        }
+
+        if (intakeReverse) {
+            subSystem.reverseIntake();
+        } else if (intake){
+            subSystem.startIntake();
+        } else {
+            subSystem.stopIntake();
+        }
+
+        if (gamepad2.bWasPressed() ){
+            pass = !pass;
+
         }
 
 
+        if (pass){
+            subSystem.startPass();
+        } else {
+            subSystem.stopPass();
+        }
+        // Telemetry
 
+        telemetry.addData("x", poseEstimate.getX());
+        telemetry.addData("y", poseEstimate.getY());
+        telemetry.addData("heading", poseEstimate.getHeading());
+        telemetry.addData("Shoot Queue:", pass);
+        telemetry.addData("Inputs", gamepad1.toString());
+        telemetry.update();
 
     }
 }
