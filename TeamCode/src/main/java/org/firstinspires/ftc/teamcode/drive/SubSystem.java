@@ -81,8 +81,8 @@ public class SubSystem {
     {
         lightColours.put(() -> launcherOn, 0.61);
         lightColours.put(() -> intakeReverse, 0.277);
-        lightColours.put(() -> intakeOn, 0.77);
-        lightColours.put(() -> passOn, 0.87);
+        lightColours.put(() -> intakeOn, 0.50);
+        lightColours.put(() -> passOn, 0.38);
     }
 
     public void Floodlight() {
