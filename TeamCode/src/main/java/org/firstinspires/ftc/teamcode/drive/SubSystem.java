@@ -77,7 +77,7 @@ public class SubSystem {
         else if(intakeOn&&!launcherOn&&!passOn){
             Flood.setPosition(0.72);
         }
-        else(launcherOn&&!intakeOn&&!passOn){
+        else{
             Flood.setPosition(0.5);
         }
     }

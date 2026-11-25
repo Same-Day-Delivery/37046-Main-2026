@@ -1,4 +1,4 @@
-AutonomousCodeBiobuzzpackage org.firstinspires.ftc.teamcode.drive.opmode.autonomous;
+package org.firstinspires.ftc.teamcode.drive.opmode.autonomous;
 
 // Imported Libraries
 
@@ -22,8 +22,8 @@ public class AutoShootSecond extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        SampleTankDrive drive = new SampleTankDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
-        drive.setMode(DcMotor.RunMode.RUN_WITH_ENCODER);
+        SampleTankDrive drive = new SampleTankDrive(hardwareMap);     // Change to SampleTankDrive if using tank drive
+        drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         SubSystem subSystem = new SubSystem();
         subSystem.init(hardwareMap, drive);
@@ -33,7 +33,6 @@ public class AutoShootSecond extends LinearOpMode {
         if (isStopRequested()) return;
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
                 .forward(30)
-                .turn(Math.toRadians(90))
                 .back(20)
                 .build();
 

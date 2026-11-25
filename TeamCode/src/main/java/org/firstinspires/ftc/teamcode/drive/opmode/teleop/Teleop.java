@@ -20,21 +20,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 // Global Variables
 
-boolean launch = false;
-boolean intake = false;
-boolean intakeReverse = false;
-boolean pass = false;
-
-
-
-
 
 @TeleOp(group = "drive")
 public class SampleTeleop extends LinearOpMode {
 
 
-
-
+    boolean launch = false;
+    boolean intake = false;
+    boolean intakeReverse = false;
+    boolean pass = false;
 
     @Override
     public void runOpMode() throws InterruptedException {
