@@ -79,10 +79,10 @@ public class SubSystem {
     // set up our states
     Map<BooleanSupplier, Double> lightColours = new LinkedHashMap<>();
     {
-        lightColours.put(() -> launcherOn, 0.61);
         lightColours.put(() -> intakeReverse, 0.277);
-        lightColours.put(() -> intakeOn, 0.50);
+        lightColours.put(() -> launcherOn, 0.61);
         lightColours.put(() -> passOn, 0.38);
+        lightColours.put(() -> intakeOn, 0.50);
     }
 
     public void Floodlight() {
