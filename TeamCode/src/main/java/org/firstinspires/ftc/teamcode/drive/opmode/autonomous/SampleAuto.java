@@ -35,6 +35,12 @@ public class SampleAuto extends LinearOpMode {
 
         if (isStopRequested()) return;
         waitForStart();
+
+        subSystem.startLauncher();
+        sleep(2000);
+
+
+
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
                 .forward(20)
                 .turn(Math.toRadians(90))
