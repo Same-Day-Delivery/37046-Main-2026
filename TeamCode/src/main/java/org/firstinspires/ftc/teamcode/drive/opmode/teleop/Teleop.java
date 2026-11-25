@@ -20,9 +20,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 // Global Variables
 
-
-
-// Devices
+boolean launch = false;
+boolean intake = false;
+boolean intakeReverse = false;
+boolean pass = false;
 
 
 
@@ -35,9 +36,6 @@ public class SampleTeleop extends LinearOpMode {
 
 
 
-
-
-
     @Override
     public void runOpMode() throws InterruptedException {
         SampleTankDrive drive = new SampleTankDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
@@ -45,6 +43,7 @@ public class SampleTeleop extends LinearOpMode {
 
         SubSystem subSystem = new SubSystem();
         subSystem.init(hardwareMap, drive);
+
 
         waitForStart();
 
@@ -61,6 +60,14 @@ public class SampleTeleop extends LinearOpMode {
 
 
         }
+
+        if(gamepad2.x){
+            startLauncher();
+        }
+
+
+
+
     }
 }
 
