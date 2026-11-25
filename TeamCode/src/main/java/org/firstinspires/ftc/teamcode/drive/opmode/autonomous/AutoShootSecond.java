@@ -32,7 +32,7 @@ public class AutoShootSecond extends LinearOpMode {
 
         if (isStopRequested()) return;
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
+                .forward(30)
                 .turn(Math.toRadians(90))
                 .back(20)
                 .build();
