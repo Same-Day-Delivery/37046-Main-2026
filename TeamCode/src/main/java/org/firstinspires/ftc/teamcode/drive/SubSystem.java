@@ -32,7 +32,7 @@ public class SubSystem {
 
     // Motors Setup
 
-    private DcMotorEx motor1, motor2;
+    private DcMotorEx Intake, Launcher;
 
     // Servos Setup
 
@@ -59,12 +59,12 @@ public class SubSystem {
         Intake.setPower(0.01);
         Launcher.setPower(0.01);
 
-        Pass = hardwareMap.get(Servo.class, "Pass");
+        Pass = hardwareMap.get(CRServo.class, "Pass");
         funnelLeft = hardwareMap.get(CRServo.class, "funnelLeft");
         funnelRight = hardwareMap.get(CRServo.class, "funnelRight");
         funnelLeft.setDirection(CRServo.Direction.FORWARD);
         funnelRight.setDirection(CRServo.Direction.REVERSE);
-        Pass.setDirection(Servo.Direction.FORWARD);
+        Pass.setDirection(CRServo.Direction.FORWARD);
 
         Flood = hardwareMap.get(Servo.class, "Flood");
         Flood.setPosition(0);

@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.drive.opmode.teleop;
 
 // Imported Libraries
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
-import org.firstinspires.ftc.teamcode.drive.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.drive.SubSystem;
 
@@ -22,7 +21,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 @TeleOp(group = "drive")
-public class SampleTeleop extends LinearOpMode {
+public class Teleop extends LinearOpMode {
 
 
     boolean launch = false;
@@ -93,11 +92,6 @@ public class SampleTeleop extends LinearOpMode {
             subSystem.stopPass();
         }
         // Telemetry
-
-        telemetry.addData("x", poseEstimate.getX());
-        telemetry.addData("y", poseEstimate.getY());
-        telemetry.addData("heading", poseEstimate.getHeading());
-        telemetry.addData("Shoot Queue:", pass);
         telemetry.addData("Inputs", gamepad1.toString());
         telemetry.update();
 

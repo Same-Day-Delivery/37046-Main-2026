@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.drive.opmode.autonomous;
 
 // Imported Libraries
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.drive.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.drive.SubSystem;
 
@@ -27,7 +26,7 @@ public class SampleAuto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
-        drive.setMode(DcMotor.RunMode.RUN_WITH_ENCODER);
+        drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         SubSystem subSystem = new SubSystem();
         subSystem.init(hardwareMap, drive);
@@ -43,8 +42,6 @@ public class SampleAuto extends LinearOpMode {
 
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
                 .forward(20)
-                .turn(Math.toRadians(90))
-                .turn(Math.toRadians(90))
                 .back(20)
                 .back(20)
                 .build();
@@ -57,10 +54,5 @@ public class SampleAuto extends LinearOpMode {
 
 
 
-        Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
-                .turn(Math.toRadians(90))
-                .build();
-
-        drive.followTrajectory(trajectory2);
     }
 }

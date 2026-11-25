@@ -23,7 +23,7 @@ public class testauto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
-        drive.setMode(DcMotor.RunMode.RUN_WITH_ENCODER);
+        drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         SubSystem subSystem = new SubSystem();
         subSystem.init(hardwareMap, drive);

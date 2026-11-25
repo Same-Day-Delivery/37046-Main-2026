@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.drive.opmode.teleop;
 
 // Imported Libraries
 import org.firstinspires.ftc.teamcode.drive.SampleTankDrive;
-import org.firstinspires.ftc.teamcode.drive.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.drive.SubSystem;
 

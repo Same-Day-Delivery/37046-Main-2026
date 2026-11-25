@@ -23,7 +23,7 @@ public class AutoForward extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         SampleTankDrive drive = new SampleTankDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
-        drive.setMode(DcMotor.RunMode.RUN_WITH_ENCODER);
+        drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         SubSystem subSystem = new SubSystem();
         subSystem.init(hardwareMap, drive);
