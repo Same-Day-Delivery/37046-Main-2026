@@ -46,8 +46,8 @@ public class SubSystem {
     public void init(HardwareMap hardwareMap, Drive drive) {
         this.drive = drive;
 
-        Intake = hardwareMap.get(DcMotorEx.class, "intake");
-        Launcher = hardwareMap.get(DcMotorEx.class, "shoot");
+        Intake = hardwareMap.get(DcMotorEx.class, "Intake");
+        Launcher = hardwareMap.get(DcMotorEx.class, "launcher");
 
         Intake.setDirection(DcMotorEx.Direction.FORWARD);
         Launcher.setDirection(DcMotorEx.Direction.FORWARD);
