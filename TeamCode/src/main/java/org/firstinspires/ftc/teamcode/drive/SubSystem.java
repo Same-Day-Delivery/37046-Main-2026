@@ -16,6 +16,10 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.function.BooleanSupplier;
 
 
 @Config
@@ -70,16 +74,29 @@ public class SubSystem {
     // ---------------------------------------------------------------
     // Floodlight
 
-    public void FloodLight(){
-        if(intakeReverse){
-            Flood.setPosition(0.28);
+    private final double idleColour = 1.0;
+
+    // set up our states
+    Map<BooleanSupplier, Double> lightColours = new LinkedHashMap<>();
+    {
+        lightColours.put(() -> intakeReverse, 0.277);
+        lightColours.put(() -> launcherOn, 0.61);
+        lightColours.put(() -> passOn, 0.38);
+        lightColours.put(() -> intakeOn, 0.50);
+    }
+
+    public void Floodlight() {
+        double position = idleColour;
+
+        for (Map.Entry<BooleanSupplier, Double> entry: lightColours.entrySet()) {
+            if (entry.getKey().getAsBoolean()) {
+                position = entry.getValue();
+                // stop at the highest possible state (so we hopefully get the best fit state)
+                break;
+            }
         }
-        else if(intakeOn&&!launcherOn&&!passOn){
-            Flood.setPosition(0.72);
-        }
-        else{
-            Flood.setPosition(0.5);
-        }
+
+        Flood.setPosition(position);
     }
 
 
