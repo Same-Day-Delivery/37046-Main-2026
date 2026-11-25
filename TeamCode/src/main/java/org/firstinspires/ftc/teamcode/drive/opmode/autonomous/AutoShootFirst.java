@@ -45,7 +45,7 @@ public class AutoShootFirst extends LinearOpMode {
 
 
 
-
+subSystem
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
                 .forward(5)
                 .build();
