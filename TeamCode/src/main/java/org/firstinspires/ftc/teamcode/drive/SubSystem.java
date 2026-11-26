@@ -78,8 +78,6 @@ public class SubSystem {
     // ---------------------------------------------------------------
     // Floodlight
 
-    private final double idleColour = 1.0;
-
     // set up our states
     Map<BooleanSupplier, Double> lightColours = new LinkedHashMap<>();
     {
@@ -90,7 +88,7 @@ public class SubSystem {
     }
 
     public void Floodlight() {
-        double position = idleColour;
+        double position = 1.0;
 
         for (Map.Entry<BooleanSupplier, Double> entry: lightColours.entrySet()) {
             if (entry.getKey().getAsBoolean()) {
