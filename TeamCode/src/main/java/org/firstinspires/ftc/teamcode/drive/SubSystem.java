@@ -125,7 +125,7 @@ public class SubSystem {
     }
 
     public void reverseIntake() {
-        intakeReverse = true;   
+        intakeReverse = !intakeReverse;
         Intake.setPower(-1.0);
     }
 
