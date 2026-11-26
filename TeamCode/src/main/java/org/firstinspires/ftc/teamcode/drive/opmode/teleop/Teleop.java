@@ -29,6 +29,8 @@ public class Teleop extends LinearOpMode {
     boolean intakeReverse = false;
     boolean pass = false;
 
+    double blockerPosition = 0;
+
     @Override
     public void runOpMode() throws InterruptedException {
         SampleTankDrive drive = new SampleTankDrive(hardwareMap);         // Change to SampleTankDrive if using tank drive
@@ -43,58 +45,79 @@ public class Teleop extends LinearOpMode {
         while (!isStopRequested()) {
             drive.setWeightedDrivePower(
                     new Pose2d(
-                            -gamepad1.left_stick_y,
                             -gamepad1.left_stick_x,
-                            -gamepad1.right_stick_x
+                            -gamepad1.left_stick_y,
+                            -gamepad1.right_stick_y
                     )
             );
+
+            
+            if(gamepad2.xWasPressed()||gamepad1.xWasPressed()){
+                launch = !launch;
+            }
+
+            if (launch) {
+                subSystem.startLauncher();
+            } else {
+                subSystem.stopLauncher();
+            }
+
+            if(gamepad2.yWasPressed()||gamepad1.yWasPressed()){
+                intake = !intake;
+            }
+
+            if(gamepad2.rightBumperWasPressed()||gamepad1.rightBumperWasPressed()){
+                intakeReverse = !intakeReverse;
+            }
+
+            if (intakeReverse) {
+                subSystem.reverseIntake();
+            } else if (intake){
+                subSystem.startIntake();
+            } else {
+                subSystem.stopIntake();
+            }
+
+            if (gamepad1.bWasPressed()){
+                pass = !pass;
+
+            }
+
+
+            if (pass){
+                subSystem.startPass();
+            } else {
+                subSystem.stopPass();
+            }
+
+            if (gamepad2.right_trigger>0) {
+                if(blockerPosition<1) {
+                    blockerPosition = blockerPosition + (gamepad2.right_trigger * 0.3);
+                }
+            }
+            if (gamepad2.left_trigger>0) {
+                if(blockerPosition>0) {
+                    blockerPosition = blockerPosition - (gamepad2.left_trigger * 0.3);
+                }
+            }
+            subSystem.blocker(blockerPosition);
+            if (gamepad2.aWasPressed()) {
+                subSystem.blockerDown();
+            }
+
+
+
+            // Telemetry
+            telemetry.addData("Gamepad 1:", gamepad1.toString());
+            telemetry.addData("Gamepad 2:", gamepad2.toString());
+            telemetry.update();
+
+            subSystem.Floodlight();
 
             drive.update();
 
 
         }
-
-        if(gamepad2.xWasPressed() ){
-            launch = !launch;
-        }
-
-        if (launch) {
-            subSystem.startLauncher();
-        } else {
-            subSystem.stopLauncher();
-        }
-
-        if(gamepad2.yWasPressed() ){
-            intake = !intake;
-        }
-
-        if(gamepad2.aWasPressed() ){
-            intakeReverse = !intakeReverse;
-        }
-
-        if (intakeReverse) {
-            subSystem.reverseIntake();
-        } else if (intake){
-            subSystem.startIntake();
-        } else {
-            subSystem.stopIntake();
-        }
-
-        if (gamepad2.bWasPressed() ){
-            pass = !pass;
-
-        }
-
-
-        if (pass){
-            subSystem.startPass();
-        } else {
-            subSystem.stopPass();
-        }
-        // Telemetry
-        telemetry.addData("Inputs", gamepad1.toString());
-        telemetry.update();
-
     }
 }
 

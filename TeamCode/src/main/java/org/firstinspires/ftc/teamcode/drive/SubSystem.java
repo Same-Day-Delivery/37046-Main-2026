@@ -39,13 +39,15 @@ public class SubSystem {
     private CRServo Pass;
     private CRServo funnelLeft;
     private CRServo funnelRight;
-    private Servo Flood;
+    private Servo Flood, Blocker;
 
     // Variables
     boolean intakeOn = false;
     boolean intakeReverse = false;
     boolean launcherOn = false;
     boolean passOn = false;
+
+    double launcherTargetSpeed = 1250;
 
     public void init(HardwareMap hardwareMap, Drive drive) {
         this.drive = drive;
@@ -62,12 +64,14 @@ public class SubSystem {
         Pass = hardwareMap.get(CRServo.class, "Pass");
         funnelLeft = hardwareMap.get(CRServo.class, "funnelLeft");
         funnelRight = hardwareMap.get(CRServo.class, "funnelRight");
-        funnelLeft.setDirection(CRServo.Direction.FORWARD);
-        funnelRight.setDirection(CRServo.Direction.REVERSE);
-        Pass.setDirection(CRServo.Direction.FORWARD);
+        funnelLeft.setDirection(CRServo.Direction.REVERSE);
+        funnelRight.setDirection(CRServo.Direction.FORWARD);
+        Pass.setDirection(CRServo.Direction.REVERSE);
 
         Flood = hardwareMap.get(Servo.class, "Flood");
         Flood.setPosition(0);
+
+        Blocker = hardwareMap.get(Servo.class, "Block");
 
     }
 
@@ -79,7 +83,7 @@ public class SubSystem {
     // set up our states
     Map<BooleanSupplier, Double> lightColours = new LinkedHashMap<>();
     {
-        lightColours.put(() -> intakeReverse, 0.277);
+        lightColours.put(() -> intakeReverse, 0.3);
         lightColours.put(() -> launcherOn, 0.61);
         lightColours.put(() -> passOn, 0.38);
         lightColours.put(() -> intakeOn, 0.50);
@@ -128,12 +132,12 @@ public class SubSystem {
     // Launcher
 
     public void startLauncher() {
-        Launcher.setPower(1.0);
+        Launcher.setVelocity(launcherTargetSpeed);
         launcherOn = true;
     }
 
     public void stopLauncher() {
-        Launcher.setPower(0.01);
+        Launcher.setVelocity(0);
         launcherOn = false;
     }
 
@@ -147,6 +151,14 @@ public class SubSystem {
     public void stopPass() {
         Pass.setPower(0.01);
         passOn = false;
+    }
+
+    public void blocker(double Position) {
+        Blocker.setPosition(Position);
+    }
+
+    public void blockerDown() {
+        Blocker.setPosition(0);
     }
 
 
