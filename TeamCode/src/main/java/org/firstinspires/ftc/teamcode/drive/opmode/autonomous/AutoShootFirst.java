@@ -32,24 +32,29 @@ public class AutoShootFirst extends LinearOpMode {
 
         if (isStopRequested()) return;
         waitForStart();
-        Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
-                .back(20)
-                .build();
-
-        drive.followTrajectory(trajectory);
-
 
         subSystem.startLauncher();
 
-
-
-
-subSystem
-        Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
-                .forward(5)
+        drive.turn(Math.toRadians(270));
+        Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
+                .forward(20)
                 .build();
-        drive.turn(Math.toRadians(90));
+
+        drive.followTrajectory(trajectory);
+        drive.turn(Math.toRadians(0));
+
+        Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
+                .forward(70)
+                .build();
+
         drive.followTrajectory(trajectory2);
+        drive.turn(Math.toRadians(270));
+
+        Trajectory trajectory3 = drive.trajectoryBuilder(new Pose2d())
+                .forward(20)
+                .build();
+
+        drive.followTrajectory(trajectory3);
+
     }
 }
