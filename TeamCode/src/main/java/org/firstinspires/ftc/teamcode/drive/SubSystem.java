@@ -4,6 +4,7 @@ import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.drive.Drive;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.hardware.dfrobot.HuskyLens;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 
@@ -64,7 +65,7 @@ public class SubSystem {
         Pass = hardwareMap.get(CRServo.class, "Pass");
         funnelLeft = hardwareMap.get(CRServo.class, "funnelLeft");
         funnelRight = hardwareMap.get(CRServo.class, "funnelRight");
-        funnelLeft.setDirection(CRServo.Direction.REVERSE);
+        funnelLeft.setDirection(CRServo.Direction.FORWARD);
         funnelRight.setDirection(CRServo.Direction.FORWARD);
         Pass.setDirection(CRServo.Direction.REVERSE);
 
@@ -125,7 +126,7 @@ public class SubSystem {
     }
 
     public void reverseIntake() {
-        intakeReverse = true;   
+        intakeReverse = !intakeReverse;
         Intake.setPower(-1.0);
     }
 
@@ -157,9 +158,6 @@ public class SubSystem {
         Blocker.setPosition(Position);
     }
 
-    public void blockerDown() {
-        Blocker.setPosition(0);
-    }
 
 
 

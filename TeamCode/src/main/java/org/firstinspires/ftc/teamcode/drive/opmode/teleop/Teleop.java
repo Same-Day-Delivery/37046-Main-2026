@@ -29,7 +29,10 @@ public class Teleop extends LinearOpMode {
     boolean intakeReverse = false;
     boolean pass = false;
 
-    double blockerPosition = 0;
+    double blockerPosition = 1;
+    double blockSpeed = 0.1;
+
+    double movePower = 0.1;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -43,11 +46,16 @@ public class Teleop extends LinearOpMode {
         waitForStart();
 
         while (!isStopRequested()) {
+            if(gamepad1.left_bumper){
+                movePower = 0.3;
+            } else {
+                movePower = 1;
+            }
             drive.setWeightedDrivePower(
                     new Pose2d(
-                            -gamepad1.left_stick_x,
+                            gamepad1.left_stick_x*movePower,
                             -gamepad1.left_stick_y,
-                            -gamepad1.right_stick_y
+                            gamepad1.right_stick_y*movePower
                     )
             );
 
@@ -90,19 +98,19 @@ public class Teleop extends LinearOpMode {
                 subSystem.stopPass();
             }
 
-            if (gamepad2.right_trigger>0) {
-                if(blockerPosition<1) {
-                    blockerPosition = blockerPosition + (gamepad2.right_trigger * 0.3);
+            if (gamepad2.right_trigger<1) {
+                if(blockerPosition>0.5) {
+                    blockerPosition = blockerPosition - (gamepad2.right_trigger * blockSpeed);
                 }
             }
-            if (gamepad2.left_trigger>0) {
-                if(blockerPosition>0) {
-                    blockerPosition = blockerPosition - (gamepad2.left_trigger * 0.3);
+            if (gamepad2.left_trigger<1) {
+                if(blockerPosition<1) {
+                    blockerPosition = blockerPosition + (gamepad2.left_trigger * blockSpeed);
                 }
             }
             subSystem.blocker(blockerPosition);
             if (gamepad2.aWasPressed()) {
-                subSystem.blockerDown();
+                blockerPosition = 1;
             }
 
 
