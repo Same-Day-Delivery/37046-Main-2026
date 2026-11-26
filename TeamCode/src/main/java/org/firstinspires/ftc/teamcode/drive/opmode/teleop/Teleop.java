@@ -96,9 +96,11 @@ public class Teleop extends LinearOpMode {
                 subSystem.stopIntake();
             }
 
-            if (gamepad1.bWasPressed()){
-                pass = !pass;
+            if (gamepad1.b){
+                pass = true;
 
+            } else {
+                pass = false;
             }
 
 
