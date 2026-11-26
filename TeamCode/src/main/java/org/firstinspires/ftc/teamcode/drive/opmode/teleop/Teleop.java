@@ -71,15 +71,6 @@ public class Teleop extends LinearOpMode {
             }
 
 
-            if(gamepad1.dpadUpWasPressed()){
-                subSystem.setLaunchSpeed(1250);
-            }
-
-            if(gamepad1.dpadDownWasPressed()){
-                subSystem.setLaunchSpeed(1150);
-            }
-
-
             if(gamepad2.yWasPressed()||gamepad1.yWasPressed()){
                 intake = !intake;
             }
