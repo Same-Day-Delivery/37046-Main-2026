@@ -111,7 +111,7 @@ public class Teleop extends LinearOpMode {
             }
 
             if (gamepad2.right_trigger<1) {
-                if(blockerPosition>0.5) {
+                if(blockerPosition>0.4) {
                     blockerPosition = blockerPosition - (gamepad2.right_trigger * blockSpeed);
                 }
             }
