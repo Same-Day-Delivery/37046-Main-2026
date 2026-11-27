@@ -53,9 +53,9 @@ public class Teleop extends LinearOpMode {
             }
             drive.setWeightedDrivePower(
                     new Pose2d(
-                            gamepad1.left_stick_x*movePower,
+                            gamepad1.right_stick_y*movePower,
                             -gamepad1.left_stick_y,
-                            gamepad1.right_stick_y*movePower
+                            gamepad1.left_stick_x*movePower
                     )
             );
 
