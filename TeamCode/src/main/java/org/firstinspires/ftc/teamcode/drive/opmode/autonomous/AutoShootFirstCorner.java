@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.drive.opmode.autonomous;
 // Imported Libraries
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -39,27 +40,35 @@ public class AutoShootFirstCorner extends LinearOpMode {
                 .build();
         drive.followTrajectory(trajectory0);
 
-        drive.turn(Math.toRadians(270));
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
+                .splineTo(new Vector2d(50, 20), Math.toRadians(180))
                 .build();
-
         drive.followTrajectory(trajectory);
-        drive.turn(Math.toRadians(0));
+
+        subSystem.startIntake();
+        sleep(4000);
 
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
-                .forward(50)
+                .splineTo(new Vector2d(20, 20), Math.toRadians(0))
                 .build();
-
         drive.followTrajectory(trajectory2);
-        drive.turn(Math.toRadians(270));
+
 
         Trajectory trajectory3 = drive.trajectoryBuilder(new Pose2d())
+                .forward(80)
+                .build();
+
+        drive.followTrajectory(trajectory3);
+        drive.turn(Math.toRadians(270));
+
+        Trajectory trajectory4 = drive.trajectoryBuilder(new Pose2d())
                 .forward(20)
                 .back(5)
                 .build();
 
-        drive.followTrajectory(trajectory3);
+        drive.followTrajectory(trajectory4);
+        drive.turn(Math.toRadians(270));
+
 
     }
 }

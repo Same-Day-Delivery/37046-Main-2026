@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.drive.opmode.autonomous;
 // Imported Libraries
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -35,42 +36,39 @@ public class AutoShootFirstFlower extends LinearOpMode {
 
         subSystem.startLauncher();
         Trajectory trajectory0 = drive.trajectoryBuilder(new Pose2d())
-                .forward(35)
+                .back(20)
                 .build();
         drive.followTrajectory(trajectory0);
 
-        drive.turn(Math.toRadians(305));
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
-                .forward(40)
+                .splineTo(new Vector2d(60, 50), Math.toRadians(270))
                 .build();
+        drive.followTrajectory(trajectory);
 
         subSystem.startIntake();
         sleep(4000);
-
-
-
-        drive.followTrajectory(trajectory);
 
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
                 .back(20)
                 .build();
 
-        drive.followTrajectory(trajectory2);
         drive.turn(Math.toRadians(0));
+        drive.followTrajectory(trajectory2);
 
         Trajectory trajectory3 = drive.trajectoryBuilder(new Pose2d())
-                .forward(50)
+                .back(75)
                 .build();
 
         drive.followTrajectory(trajectory3);
         drive.turn(Math.toRadians(270));
 
         Trajectory trajectory4 = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
-                .back(5)
+                .forward(30)
+                .back (5)
                 .build();
 
         drive.followTrajectory(trajectory4);
+
 
     }
 }
