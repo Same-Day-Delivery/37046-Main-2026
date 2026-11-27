@@ -36,12 +36,12 @@ public class AutoShootFirstCorner extends LinearOpMode {
 
         subSystem.startLauncher();
         Trajectory trajectory0 = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
+                .forward(5)
                 .build();
         drive.followTrajectory(trajectory0);
 
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
-                .splineTo(new Vector2d(50, 20), Math.toRadians(180))
+                .splineTo(new Vector2d(10, 10), Math.toRadians(180))
                 .build();
         drive.followTrajectory(trajectory);
 
@@ -49,20 +49,20 @@ public class AutoShootFirstCorner extends LinearOpMode {
         sleep(4000);
 
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
-                .splineTo(new Vector2d(20, 20), Math.toRadians(0))
+                .splineTo(new Vector2d(5, 5), Math.toRadians(0))
                 .build();
         drive.followTrajectory(trajectory2);
 
 
         Trajectory trajectory3 = drive.trajectoryBuilder(new Pose2d())
-                .forward(80)
+                .forward(20)
                 .build();
 
         drive.followTrajectory(trajectory3);
         drive.turn(Math.toRadians(270));
 
         Trajectory trajectory4 = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
+                .forward(5)
                 .back(5)
                 .build();
 

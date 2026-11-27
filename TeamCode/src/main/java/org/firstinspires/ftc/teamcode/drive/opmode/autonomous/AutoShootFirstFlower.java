@@ -41,7 +41,7 @@ public class AutoShootFirstFlower extends LinearOpMode {
         drive.followTrajectory(trajectory0);
 
         Trajectory trajectory = drive.trajectoryBuilder(new Pose2d())
-                .splineTo(new Vector2d(60, 50), Math.toRadians(270))
+                .splineTo(new Vector2d(15, 10), Math.toRadians(270))
                 .build();
         drive.followTrajectory(trajectory);
 
@@ -49,21 +49,21 @@ public class AutoShootFirstFlower extends LinearOpMode {
         sleep(4000);
 
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
-                .back(20)
+                .back(5)
                 .build();
 
         drive.turn(Math.toRadians(0));
         drive.followTrajectory(trajectory2);
 
         Trajectory trajectory3 = drive.trajectoryBuilder(new Pose2d())
-                .back(75)
+                .forward(15)
                 .build();
 
         drive.followTrajectory(trajectory3);
         drive.turn(Math.toRadians(270));
 
         Trajectory trajectory4 = drive.trajectoryBuilder(new Pose2d())
-                .forward(30)
+                .forward(10)
                 .back (5)
                 .build();
 
