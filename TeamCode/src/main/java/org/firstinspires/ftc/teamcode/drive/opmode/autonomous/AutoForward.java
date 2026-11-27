@@ -33,7 +33,7 @@ public class AutoForward extends LinearOpMode {
         if (isStopRequested()) return;
         waitForStart();
         Trajectory trajectory2 = drive.trajectoryBuilder(new Pose2d())
-                .forward(20)
+                .forward(5)
                 .build();
         drive.followTrajectory(trajectory2);
     }
